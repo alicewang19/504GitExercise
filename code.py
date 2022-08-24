@@ -1,16 +1,33 @@
-def function1(a):
-    b = dict()
-    for c in a:
-        if c not in b:
-            b[c] = 1
+def base_count(seq):
+    '''
+    Return the counts of the bases in a sequence
+    Inputs: seq
+    '''
+    # init an empty dictionary for counts
+    counts = dict()
+    # check all bases in the sequence
+    for base in seq:
+        # if this is a new base in the count dict
+        if base not in counts:
+            # mark the occurence as 1
+            counts[base] = 1
         else:
-            b[c] += 1
-    return b
+            # otherwise, add one count
+            counts[base] += 1
+    return counts
 
-def function2(a):
+def calc_freq(counts):
+    '''
+    Calculate the frequencies of the nucleotiedes in the given sequence
+    Params:
+        counts: dictionay that tracks the counts of difference bases in a sequence
+    '''
+    # the first line of the output
     print('freqs')
-    total = float(sum([a[b] for b in a.keys()]))
-    for b in a.keys():
-        print(b + ':' + str(a[b]/total))
+    # calculate the total number of counts
+    total = float(sum([counts[base] for base in counts.keys()]))
+    # print freq one by one
+    for base in counts.keys():
+        print(base + ':' + str(counts[base]/total))
 
-function2(function1('ATCTGACGCGCGCCGC'))
+calc_freq(base_count('ATCTGACGCGCGCCGC'))
